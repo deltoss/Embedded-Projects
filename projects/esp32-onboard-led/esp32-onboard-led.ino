@@ -10,10 +10,10 @@ void loop() {
   static unsigned long previousTime = 0;
   static bool ledOn = false;
 
-  const unsigned long now = millis();
+  const unsigned long msSinceStart = millis();
 
-  if (now - previousTime >= INTERVAL_MS) {
-    previousTime = now;
+  if (msSinceStart - previousTime >= INTERVAL_MS) {
+    previousTime = msSinceStart;
     ledOn = !ledOn;
 
     if (ledOn) {
