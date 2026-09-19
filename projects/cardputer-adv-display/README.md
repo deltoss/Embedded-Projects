@@ -1,6 +1,6 @@
 # Cardputer ADV Display
 
-A minimal M5Stack Cardputer ADV sketch. It shows `ON` for one second, clears the display for one second, repeats 15 times, then keeps the display blank.
+A minimal M5Stack Cardputer ADV sketch. It continuously shows `ON` for one second and clears the display for one second without blocking the main loop.
 
 The sketch uses the display instead of `LED_BUILTIN`, preserving the logic of [`../esp32-onboard-led`](../esp32-onboard-led) on Cardputer ADV hardware.
 

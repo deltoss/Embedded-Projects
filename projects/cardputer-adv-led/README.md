@@ -1,6 +1,6 @@
 # Cardputer ADV LED
 
-A minimal M5Stack Cardputer ADV sketch. It turns the onboard SK6812 RGB LED white for one second, off for one second, repeats 15 times, then disables LED power.
+A minimal M5Stack Cardputer ADV sketch. It continuously turns the onboard SK6812 RGB LED white for one second and off for one second without blocking the main loop.
 
 - **GPIO 38** ⟶ Enables the ADV RGB LED power switch.
 - **GPIO 21** ⟶ Sends SK6812 RGB data.

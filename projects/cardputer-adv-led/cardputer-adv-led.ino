@@ -1,7 +1,6 @@
 #include <Adafruit_NeoPixel.h>
 
 constexpr unsigned long INTERVAL_MS = 1000;
-constexpr int BLINK_COUNT = 15;
 constexpr uint8_t RGB_POWER_PIN = 38;
 constexpr uint8_t RGB_DATA_PIN = 21;
 
@@ -20,16 +19,17 @@ void setup() {
   led.begin();
   led.setBrightness(32);
   setLed(false);
-
-  for (int i = 0; i < BLINK_COUNT; ++i) {
-    setLed(true);
-    delay(INTERVAL_MS);
-
-    setLed(false);
-    delay(INTERVAL_MS);
-  }
-
-  digitalWrite(RGB_POWER_PIN, LOW);
 }
 
-void loop() {}
+void loop() {
+  static unsigned long previousTime = 0;
+  static bool ledOn = false;
+
+  const unsigned long now = millis();
+
+  if (now - previousTime >= INTERVAL_MS) {
+    previousTime = now;
+    ledOn = !ledOn;
+    setLed(ledOn);
+  }
+}

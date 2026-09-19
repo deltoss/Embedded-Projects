@@ -1,7 +1,6 @@
 #include <M5Cardputer.h>
 
 constexpr unsigned long INTERVAL_MS = 1000;
-constexpr int BLINK_COUNT = 15;
 
 void showState(bool on) {
   auto& display = M5Cardputer.Display;
@@ -20,16 +19,18 @@ void showState(bool on) {
 void setup() {
   auto config = M5.config();
   M5Cardputer.begin(config);
-
-  for (int i = 0; i < BLINK_COUNT; ++i) {
-    showState(true);
-    delay(INTERVAL_MS);
-
-    showState(false);
-    delay(INTERVAL_MS);
-  }
-
   showState(false);
 }
 
-void loop() {}
+void loop() {
+  static unsigned long previousTime = 0;
+  static bool displayOn = false;
+
+  const unsigned long now = millis();
+
+  if (now - previousTime >= INTERVAL_MS) {
+    previousTime = now;
+    displayOn = !displayOn;
+    showState(displayOn);
+  }
+}
