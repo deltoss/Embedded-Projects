@@ -2,8 +2,17 @@
 
 constexpr unsigned long INTERVAL_MS = 1000;
 
+void setLed(bool on) {
+  if (on) {
+    digitalWrite(LED_BUILTIN, HIGH);
+  } else {
+    digitalWrite(LED_BUILTIN, LOW);
+  }
+}
+
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
+  setLed(false);
 }
 
 void loop() {
@@ -15,11 +24,6 @@ void loop() {
   if (msSinceStart - previousTime >= INTERVAL_MS) {
     previousTime = msSinceStart;
     ledOn = !ledOn;
-
-    if (ledOn) {
-      digitalWrite(LED_BUILTIN, HIGH);
-    } else {
-      digitalWrite(LED_BUILTIN, LOW);
-    }
+    setLed(ledOn);
   }
 }

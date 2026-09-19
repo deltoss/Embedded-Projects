@@ -2,7 +2,7 @@
 
 constexpr unsigned long INTERVAL_MS = 1000;
 
-void showState(bool on) {
+void setDisplayState(bool on) {
   auto& display = M5Cardputer.Display;
   display.fillScreen(TFT_BLACK);
 
@@ -19,7 +19,7 @@ void showState(bool on) {
 void setup() {
   auto config = M5.config();
   M5Cardputer.begin(config);
-  showState(false);
+  setDisplayState(false);
 }
 
 void loop() {
@@ -31,6 +31,6 @@ void loop() {
   if (msSinceStart - previousTime >= INTERVAL_MS) {
     previousTime = msSinceStart;
     displayOn = !displayOn;
-    showState(displayOn);
+    setDisplayState(displayOn);
   }
 }
