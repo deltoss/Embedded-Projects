@@ -25,7 +25,7 @@ void toggleLed() {
 
 void connectToWifi() {
   WiFi.mode(WIFI_STA);
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  WiFi.begin(IOT_WIFI_SSID, IOT_WIFI_PASSWORD);
 
   Serial.print("Connecting to Wi-Fi");
 

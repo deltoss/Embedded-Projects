@@ -24,8 +24,8 @@ The committed `secretspec.toml` declares two required secrets and routes them to
 From this directory, store the values once:
 
 ```sh
-secretspec set WIFI_SSID --provider onepassword
-secretspec set WIFI_PASSWORD --provider onepassword
+secretspec set IOT_WIFI_SSID --provider onepassword
+secretspec set IOT_WIFI_PASSWORD --provider onepassword
 ```
 
 Change `onepassword://` in `secretspec.toml` if you want to use a different vault.

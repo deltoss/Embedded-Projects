@@ -4,15 +4,15 @@ const FQBN = "m5stack:esp32:m5stack_cardputer:FlashSize=8M,PartitionScheme=defau
 const PROJECT_DIRECTORY = path self .
 
 def main [port: string] {
-  for secretName in [WIFI_SSID WIFI_PASSWORD] {
+  for secretName in [IOT_WIFI_SSID IOT_WIFI_PASSWORD] {
     if $secretName not-in $env {
       error make $"SecretSpec did not provide ($secretName)"
     }
   }
 
-  let wifiSsid = ($env.WIFI_SSID | to json --raw)
-  let wifiPassword = ($env.WIFI_PASSWORD | to json --raw)
-  hide-env WIFI_SSID WIFI_PASSWORD
+  let wifiSsid = ($env.IOT_WIFI_SSID | to json --raw)
+  let wifiPassword = ($env.IOT_WIFI_PASSWORD | to json --raw)
+  hide-env IOT_WIFI_SSID IOT_WIFI_PASSWORD
 
   let secretDirectory = (mktemp --directory)
   let secretHeader = ($secretDirectory | path join "wifi-secrets.h")
@@ -21,8 +21,8 @@ def main [port: string] {
     [
       "#pragma once"
       ""
-      $"constexpr char WIFI_SSID[] = ($wifiSsid);"
-      $"constexpr char WIFI_PASSWORD[] = ($wifiPassword);"
+      $"constexpr char IOT_WIFI_SSID[] = ($wifiSsid);"
+      $"constexpr char IOT_WIFI_PASSWORD[] = ($wifiPassword);"
     ]
     | str join "\n"
     | save --force $secretHeader
