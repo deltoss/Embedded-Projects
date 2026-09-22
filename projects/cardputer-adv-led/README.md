@@ -11,27 +11,23 @@ Install the required library once:
 arduino-cli lib install "Adafruit NeoPixel"
 ```
 
-## Build and upload directly
-
-Follow the [Cardputer ADV board guide](../../boards/M5Stack-Cardputer-ADV.md) first. From this directory:
-
-```sh
-arduino-cli compile --fqbn m5stack:esp32:m5stack_cardputer:FlashSize=8M,PartitionScheme=default_8MB .
-arduino-cli upload --port <PORT> --fqbn m5stack:esp32:m5stack_cardputer:FlashSize=8M,PartitionScheme=default_8MB .
-```
-
-A direct upload replaces the firmware that currently boots. Use the Launcher workflow below to keep Launcher installed.
-
 ## Build for Launcher
 
-Export the application binary:
+Prepare the build toolchain in the [Cardputer ADV board guide](../../boards/M5Stack-Cardputer-ADV.md). From this directory:
 
 ```sh
-arduino-cli compile --export-binaries --output-dir out --fqbn m5stack:esp32:m5stack_cardputer:FlashSize=8M,PartitionScheme=default_8MB .
+arduino-cli compile --output-dir build --fqbn m5stack:esp32:m5stack_cardputer:FlashSize=8M,PartitionScheme=default_8MB .
 ```
 
-Install only `out/cardputer-adv-led.ino.bin` through Launcher. Do not install the bootloader, partitions, merged, ELF, or map files.
+Install only `build/cardputer-adv-led.ino.bin`. Follow the board guide to transfer it through Launcher's USB mode or WUI and install it.
 
-Launcher can install the app from its `SD` browser or `WUI` WebUI. It creates or selects a separate app partition, preserving Launcher.
+## Flash directly and replace Launcher
 
-`<PORT>` is a value such as `COM5` on Windows or `/dev/ttyACM0` on Linux. The LED color is set in `led.Color(255, 255, 255)`.
+Find the Cardputer's port, then compile and upload directly:
+
+```sh
+arduino-cli board list
+arduino-cli compile --upload --port <PORT> --fqbn m5stack:esp32:m5stack_cardputer:FlashSize=8M,PartitionScheme=default_8MB .
+```
+
+A direct flash replaces the current Launcher setup. `<PORT>` is a value such as `COM5` on Windows or `/dev/ttyACM0` on Linux. The LED color is set in `led.Color(255, 255, 255)`.

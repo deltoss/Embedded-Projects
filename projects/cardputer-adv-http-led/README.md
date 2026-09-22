@@ -4,7 +4,7 @@ This sketch connects the Cardputer ADV to Wi-Fi and starts a small HTTP server. 
 
 ## Prerequisites
 
-- The [Cardputer ADV board setup](../../boards/M5Stack-Cardputer-ADV.md)
+- The build toolchain from the [Cardputer ADV board guide](../../boards/M5Stack-Cardputer-ADV.md)
 - Arduino CLI
 - Nushell
 - [SecretSpec](https://secretspec.dev/)
@@ -30,21 +30,26 @@ secretspec set IOT_WIFI_PASSWORD --provider onepassword
 
 Change `onepassword://` in `secretspec.toml` if you want to use a different vault.
 
-## Compile and flash
+## Build for Launcher
 
-Find the Cardputer's port:
+From this directory, let SecretSpec load the Wi-Fi values and build the application image:
+
+```sh
+secretspec run -- nu build.nu
+```
+
+The script writes the values to a private temporary header, compiles the sketch, then deletes the header. Install only `build/cardputer-adv-http-led.ino.bin`. Follow the board guide to transfer it through Launcher's USB mode or WUI and install it.
+
+## Flash directly and replace Launcher
+
+Find the Cardputer's port, then build and upload directly:
 
 ```sh
 arduino-cli board list
-```
-
-Then let SecretSpec load the Wi-Fi values and run the flash script:
-
-```sh
 secretspec run -- nu flash.nu <PORT>
 ```
 
-The script writes the values to a private temporary header, removes them from the build process's environment, compiles and uploads the sketch, then deletes the header.
+A direct flash replaces the current Launcher setup. `<PORT>` is a value such as `COM5` on Windows or `/dev/ttyACM0` on Linux.
 
 ## Toggle the LED
 

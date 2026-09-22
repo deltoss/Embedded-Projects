@@ -4,11 +4,13 @@ Setup for generic Espressif ESP32 boards. This guide covers ESP32-C3, ESP32-C6, 
 
 ## Install the Arduino core
 
+From the repository root, run the setup script:
+
 ```sh
-arduino-cli config add board_manager.additional_urls https://espressif.github.io/arduino-esp32/package_esp32_index.json
-arduino-cli core update-index
-arduino-cli core install esp32:esp32
+nu scripts/setup-esp32.nu
 ```
+
+The script adds Espressif's board index, updates the index, and installs the ESP32 core. It is safe to run again.
 
 Confirm the core is installed:
 
