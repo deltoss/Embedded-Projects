@@ -1,6 +1,6 @@
 # Cardputer ADV HTTP LED
 
-This sketch connects the Cardputer ADV to Wi-Fi and starts a small HTTP server. Each `POST /led/toggle` request toggles the onboard RGB LED and returns `on` or `off`.
+This sketch connects the Cardputer ADV to Wi-Fi and starts a small HTTP server. `GET /` returns `Ok` as plain text. Each `POST /led/toggle` request toggles the onboard RGB LED and returns `on` or `off`.
 
 ## Prerequisites
 
@@ -64,7 +64,11 @@ Restart the Cardputer if the connection message already passed before the monito
 Send a request to the printed address:
 
 ```sh
+curl http://<IP>/
+# Ok
+
 curl --request POST http://<IP>/led/toggle
+# on or off
 ```
 
 The password is absent from Git, but it must be embedded in the firmware so the Cardputer can join Wi-Fi. Anyone who can extract and inspect the firmware may be able to recover it. The endpoint also has no authentication, so use this example only on a network you trust.

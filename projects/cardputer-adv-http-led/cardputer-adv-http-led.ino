@@ -53,6 +53,9 @@ void setup() {
 
   connectToWifi();
 
+  server.on("/", HTTP_GET, []() {
+    server.send(200, "text/plain", "Ok\n");
+  });
   server.on("/led/toggle", HTTP_POST, toggleLed);
   server.begin();
 }
