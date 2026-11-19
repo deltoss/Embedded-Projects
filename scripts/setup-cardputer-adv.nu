@@ -11,4 +11,5 @@ def main [] {
   ^arduino-cli core install m5stack:esp32
   ^arduino-cli lib install M5Cardputer
   ^arduino-cli lib install "Adafruit NeoPixel"
+  ^arduino-cli lib install "Adafruit SHT4x Library"
 }

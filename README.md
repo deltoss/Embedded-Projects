@@ -20,6 +20,7 @@ Select one or more devices with `Space`, then press `Enter`. The script runs eac
 ## Projects
 
 - [ESP32 onboard LED](projects/esp32-onboard-led) ⟶ Blink sketch for ESP32-C3, ESP32-C6, and ESP32-H2 boards.
+- [Cardputer ADV temperature](projects/cardputer-adv-temperature) ⟶ Ambient temperature from the external M5Stack ENV-IV sensor on the Cardputer ADV screen.
 - [Cardputer ADV display](projects/cardputer-adv-display) ⟶ Display blink sketch for the M5Stack Cardputer ADV.
 - [Cardputer ADV LED](projects/cardputer-adv-led) ⟶ Onboard RGB LED blink sketch for the M5Stack Cardputer ADV.
 - [Cardputer ADV HTTP LED](projects/cardputer-adv-http-led) ⟶ Toggle the onboard RGB LED through HTTP, with Wi-Fi secrets supplied by SecretSpec and 1Password.
